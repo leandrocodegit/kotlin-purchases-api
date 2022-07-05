@@ -1,0 +1,29 @@
+server:
+  port: 9091
+swagger:
+  pathMapping: ${SWAGGER_PATH_MAPPING:/docs/compras}
+spring:
+  mvc.path match:
+    matching-strategy: ant-path-matcher
+  data:
+    mongodb:
+      authentication-database: admin
+      host: localhost
+      port: 27017
+      database: purchasesdb
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
